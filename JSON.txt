@@ -1,0 +1,353 @@
+"карта":
+
+var fcltJSON = 
+
+' {
+
+	"fcltId":"1",
+	"fcltCurrentStage":"4",
+	"fcltName":"Физико-технический факультет",
+	"fcltStageCount":"4",
+	"fcltAuditories":[
+		{
+			"stage":"1",
+			"from":"101",
+			"to":"140"
+		},
+		{
+			"stage":"2",
+			"from":"201",
+			"to":"264"
+		},
+		{
+			"stage":"3",
+			"from":"301",
+			"to":"322"
+		},
+		{
+			"stage":"4",
+			"from":"401",
+			"to":"422"
+		}
+
+	],
+	"map": [
+
+		{ "auditoryId":"201","width":"100","height":"200","left":"140","top":"130"},
+		{ "auditoryId":"202","width":"100","height":"200","left":"170","top":"330"},
+		{ "auditoryId":"203","width":"100","height":"200","left":"200","top":"430"},
+		{ "auditoryId":"204","width":"100","height":"200","left":"300","top":"530"},
+		{ "auditoryId":"205","width":"100","height":"200","left":"400","top":"630"},
+		{ "auditoryId":"206","width":"100","height":"200","left":"500","top":"830"},
+		{ "auditoryId":"207","width":"100","height":"200","left":"600","top":"930"},
+		{ "auditoryId":"208","width":"100","height":"200","left":"700","top":"1130"},
+		{ "auditoryId":"209","width":"100","height":"200","left":"900","top":"1230"},
+		{ "auditoryId":"210","width":"100","height":"200","left":"1100","top":"1330"},
+		{ "auditoryId":"211","width":"100","height":"200","left":"1200","top":"1430"},
+		{ "auditoryId":"212","width":"100","height":"200","left":"1400","top":"1530"}
+			
+	]
+
+}';
+
+var auditoryJSON = '
+{
+	"fucltId":"1",
+	"auditoryId":"200",
+	"auditoryTitle":"Лекционный зал",
+	"auditoryDescription":"description"
+	"auditoryPersonal":[1001,2003,4005]
+
+}';
+
+
+var personalJSON = '
+{
+	"personalId":"1001",
+	"name":"Шарий т.в.",
+	"title":"Доцент",
+	"birthday":"01-05-1986",
+	"courses":[
+		{
+			"name":"Объектно-ориентированное программирование",
+			"course":"3",
+			"lectionHourse":"20",
+			"labHourse","200",
+			"labsCount","6",
+			"courseEnd":"экзамен"
+			
+		},
+
+		
+		{
+			"name":"Технологии создания программных продуктов",
+			"course":"2",
+			"lectionHourse":"36",
+			"labHourse","108",
+			"labsCount","6",
+			"courseEnd":"Зачет"
+			
+		}
+		
+	],
+	"documents":[
+		{
+			"name":"Лабораторные работы по ООП",
+			"source":"https://vk.com/document_1234567_123"
+		}
+
+	],
+	"lessons":[
+		{
+			"day":"monday",
+			"lessonNum":"2",
+			"auditory":"264",
+			"course":"3",
+			"name":"Объектно-ориентированное программирование",
+			"type":"Лекция"
+		
+		}
+		
+	],
+	"otherInfo":"",
+	"workThems": [	"работа со звуком","нечеткая логика","робототехника" ]
+
+}';
+
+
+
+
+запросы:
+http://localhost:8080/serv/getMap?fcltId=1&stageId=1 - ссылка на получение карты(картинки)
+http://localhost:8080/serv/getFcltJSON?fcltId=1&stageId=1- json объект, по умолчанию если не указан этаж, то приходит инфа о 1м этаже
+http://localhost:8080/serv/getAuditoryJSON?fcltId=1&AuditoryID=264 - возвращает информацию о конкртеной аудитории
+http://localhost:8080/serv/getAuditoryPhoto?fcltId=1&AuditoryID=264 - возвращает фотографию
+http://localhost:8080/serv/getPersonalJSON?personalId=234 - возвращает инфу о текущем сотруднике 
+
+"расписание":
+расписание не связано с картой(на текущий момент)
+var bellJSON = '{
+	"bells":[
+		{
+			"lesson":"1",
+			"start":"8:00",
+			"end":"9:20"
+		},
+		{
+			"lesson":"2",
+			"start":"9:45",
+			"end":"11:05"
+		},
+		{
+			"lesson":"3",
+			"start":"11:15",
+			"end":"12:35"
+		},
+		{
+			"lesson":"4",
+			"start":"12:45",
+			"end":"14:05"
+		},
+		{
+			"lesson":"5",
+			"start":"14:15",
+			"end":"15:35"
+		},
+		{
+			"lesson":"6",
+			"start":"15:45",
+			"end":"17:05"
+		},
+		{
+			"lesson":"7",
+			"start":"17:15",
+			"end":"18:35"
+		},
+		{
+			"lesson":"8",
+			"start":"18:45",
+			"end":"20:05"
+		}
+
+]
+
+}';
+
+
+var lessonsInDay = '{
+	"course":"1",
+	"groupId":"1",
+	"groupName":"КН-1",
+	"day":"monday"
+	"lessons":[
+		{
+			"lessonNum":"1",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В.",
+			"week":"upper",			
+		},
+		
+		{
+			"lessonNum":"1",
+			"lessonName":"История",
+			"auditory":"416",
+			"teacher":"Иванова Т.П.",
+			"week":"lower",			
+		},
+		
+		{
+			"lessonNum":"2",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"3",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		}	
+	]
+}';
+
+
+var lessonsInWeek = '{
+	"course":"1",
+	"groupId":"1",
+	"groupName":"КН-1",
+	"week":"upper",
+	"lessonsMN":[
+		{
+			"lessonNum":"1",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"2",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"3",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		}	
+	],
+	"lessonsTU":[
+		{
+			"lessonNum":"1",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"2",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"3",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		}	
+	],
+	"lessonsWN":[
+		{
+			"lessonNum":"1",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"2",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"3",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		}	
+	],
+	"lessonsTH":[
+		{
+			"lessonNum":"1",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"2",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"3",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		}	
+	],
+	"lessonsFR":[
+		{
+			"lessonNum":"1",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"2",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"3",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		}	
+	],
+	"lessonsST":[
+		{
+			"lessonNum":"1",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"2",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		},
+		
+		{
+			"lessonNum":"3",
+			"lessonName":"ООП",
+			"auditory":"416",
+			"teacher":"Шарий Т.В."		
+		}	
+	]
+}';

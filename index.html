@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title>Кафедра Компьютерных технологий</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link href="https://fonts.googleapis.com/css?family=Marmelad&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link href="style.css" rel="stylesheet">	
+</head>
+
+<body>
+
+<div class="wrapper" name="anchHead">
+	
+	<section class="first-large-section">
+			<div class="bottom-part-1">
+				<div id="phys-map">
+                    <script>
+				 var points = new Array();
+        points[0] = new Array();
+        points[1] = new Array();
+        var layer = new Konva.Layer();
+
+        function addRect(event) {  
+
+            function addFirstPoint(event) {
+                if (event.which == 1) {      
+                    points[0][0] = [event.pageX];
+                    points[0][1] = [event.pageY];
+                    console.log("x " + event.pageX + " y " + event.pageY);
+                    console.log(points[0]);    
+                }
+            };
+
+            function addSecondtPoint(event) {
+                if (event.which == 1) {       
+                    points[1][0] = [event.pageX];
+                    points[1][1] = [event.pageY];
+                    console.log("x2 " + event.pageX + " y2 " + event.pageY);
+                    console.log(points[0]);    
+                }
+            };
+
+            if (points[0] == 0) {
+                addFirstPoint(event);
+            } else {
+                addSecondtPoint(event);
+            }
+
+            widthRect = points[1][0] - points[0][0];
+            heightRect = points[1][1] - points[0][1];
+            
+            var rect = new Konva.Rect({
+                x: points[0][0],
+                y: points[0][1],
+                width: widthRect,
+                height: heightRect,
+                fill: 'green',
+                stroke: 'black',
+                strokeWidth: 2,
+                opacity: 0.2
+            });
+            layer.add(rect);
+            stage.add(layer);
+
+            if (points[0] && points[1] != 0) {
+                points[0].splice(0, points[0].length);
+                points[1].splice(0, points[1].length);
+                console.log(points[0], points[1]); 
+            }
+        };
+                    </script>
+				</div>
+				<div class="title-panel">
+					<p>Физико-технический факультет</p>
+				</div>
+				<div class="control-panel">
+					<select class="fclt">
+						<option value="1">ФизикоТехнический</option>
+						<option value="2">Математический</option>
+						<option value="3">Филологический</option>
+						<option value="4">Факультет иностранных языков</option>
+						<option value="5">Химический</option>
+						<option value="6">Биологический</option>
+						<option value="7">Юридический</option>
+						<option value="8">Экономический</option>
+						<option value="9">УНИ "Экономическая кбиернетика"</option>
+						<option value="10">Исторический</option>
+					</select>
+					<select class="stage">
+						<option value="1">1 этаж</option>
+						<option value="2">2 этаж</option>
+						<option value="3">3 этаж</option>
+						<option value="4">4 этаж</option>
+						<option value="5">5 этаж</option>
+					</select>
+					<select class="auditory">
+						<option value="415">415</option>
+						<option value="415">416</option>
+					</select>
+					<input type="text" value="" placeholder="Найти..."/>
+					<a class="mbtn"><i class="fa fa-search"></i></a>		
+					<input id="scale" type="range" min="0.01" max="1" step="0.01" value="0.3"/>
+				</div>
+			</div>
+			
+			<div class="auditory-info">
+				<div class="number">
+					<p>416</p>
+				</div>
+				<a class="photo-btn"><i class="fa fa-cube"></i></a>
+				<a class="info-btn"><i class="fa fa-file-word-o"></i></a>
+				<h1>Лекционная аудитория</h1>
+			</div>
+			
+			<div class="teacher-info">
+				<div class="slider">
+					<ul>
+						<li>
+							<img src="uag3A-gg7KU.jpg" alt="">
+							<a class="teacher-info-btn"><i class="fa fa-search"></i></a>
+							<h3>Шарий Т.В.</h3>
+						</li>
+						
+						<li>
+							<img src="PNErCEFX8Hg.jpg" alt="">
+							<a class="teacher-info-btn"><i class="fa fa-search"></i></a>
+							<h3>Григор Е.Е.</h3>
+						</li>
+						
+						<li>
+							<img src="uag3A-gg7KU.jpg" alt="">
+							<a class="teacher-info-btn"><i class="fa fa-search"></i></a>
+							<h3>Шарий Т.В.</h3>
+						</li>
+						
+						<li>
+							<img src="uag3A-gg7KU.jpg" alt="">
+							<a class="teacher-info-btn"><i class="fa fa-search"></i></a>
+							<h3>Шарий Т.В.</h3>
+						</li>
+						
+						<li>
+							<img src="uag3A-gg7KU.jpg" alt="">
+							<a class="teacher-info-btn"><i class="fa fa-search"></i></a>
+							<h3>Шарий Т.В.</h3>
+						</li>
+						
+						<li>
+							<img src="uag3A-gg7KU.jpg" alt="">
+							<a class="teacher-info-btn"><i class="fa fa-search"></i></a>
+							<h3>Шаdрий Т.В.</h3>
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+		</section>	
+	</div>
+	
+	
+    
+<script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+<script src="https://cdn.rawgit.com/konvajs/konva/0.10.0/konva.min.js"></script>
+<script type="text/javascript" src="js/konvaScript.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+
+</body>
+</html>
