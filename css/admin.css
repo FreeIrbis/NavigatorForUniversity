@@ -1,0 +1,16 @@
+.bs-example{
+    width: 80%;
+    margin: 0 auto;
+}
+.nav-tabs{
+    padding-left: 100px;
+}
+
+.panel-default{
+    margin-top: 50px;
+}
+
+.panel-heading{
+    padding: 5px 15px;
+    font-size: 25px;
+}
