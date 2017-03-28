@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/konvajs/konva/1.5.0/konva.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,11 +36,24 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <?php 
+    require_once 'modal_map.php';
+    ?>
+                <!-- Футер модального окна -->
+               
+
+    <!-- Скрипт, вызывающий модальное окно после загрузки страницы -->
+    <script>
+        function showModal() {
+            $("#myModalBox").modal('show');
+        };
+
+    </script>
     <div class="alert bs-example">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#panel1">Карты</a></li>
             <li><a data-toggle="tab" href="#panel2">Аудитории</a></li>
-            <li><a data-toggle="tab" href="#panel3">Области</a></li>
+            <li><a data-toggle="tab" href="#panel3">Преподаватели</a></li>
             <li><a data-toggle="tab" href="#panel4">Разметка</a></li>
         </ul>
 
@@ -50,36 +64,10 @@
                     <!-- Обычное содержимое панели -->
                     <div class="panel-heading">Карты</div>
                     <div class="panel-body">
-                        <a>+</a>
+                        <a onclick="showModal()">Добавить</a>
                     </div>
-                    <?php
-require_once 'connection.php'; // подключаем скрипт
- 
-$link = mysqli_connect($host, $user, $password, $database) 
-    or die("Ошибка " . mysqli_error($link)); 
-     
-$query ="SELECT * FROM map";
- 
-$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
-if($result)
-{
-    $rows = mysqli_num_rows($result); // количество полученных строк
-     
-    echo "<table class='table table-striped'><thead><tr><th>Id</th><th>Ссылка</th><th>Факультет</th><th>Этаж</th></tr></thead><tbody>";
-    for ($i = 0 ; $i < $rows ; ++$i)
-    {
-        $row = mysqli_fetch_row($result);
-        echo "<tr>";
-            for ($j = 0 ; $j < 4 ; ++$j) echo "<td>$row[$j]</td>";
-        echo "</tr>";
-    }
-    echo "</tbody></table>";
-     
-    // очищаем результат
-    mysqli_free_result($result);
-}
- 
-mysqli_close($link);
+                    <?php                    
+require_once 'date_list_map.php';
 ?>
                 </div>
             </div>
@@ -91,40 +79,14 @@ mysqli_close($link);
                         Список товаров в нашем магазине.
                     </div>
                     <?php
-require_once 'connection.php'; // подключаем скрипт
- 
-$link = mysqli_connect($host, $user, $password, $database) 
-    or die("Ошибка " . mysqli_error($link)); 
-     
-$query ="SELECT * FROM rooms";
- 
-$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
-if($result)
-{
-    $rows = mysqli_num_rows($result); // количество полученных строк
-     
-    echo "<table class='table table-striped'><thead><tr><th>Id</th><th>Модель</th><th>Производитель</th><th>Информация</th></tr></thead><tbody>";
-    for ($i = 0 ; $i < $rows ; ++$i)
-    {
-        $row = mysqli_fetch_row($result);
-        echo "<tr>";
-            for ($j = 0 ; $j < 4 ; ++$j) echo "<td>$row[$j]</td>";
-        echo "</tr>";
-    }
-    echo "</tbody></table>";
-     
-    // очищаем результат
-    mysqli_free_result($result);
-}
- 
-mysqli_close($link);
+require_once 'date_list_rooms.php';
 ?>
                 </div>
             </div>
             <div id="panel3" class="tab-pane fade">
                 <div class="panel panel-default">
                     <!-- Обычное содержимое панели -->
-                    <div class="panel-heading">Области</div>
+                    <div class="panel-heading">Преподаватели</div>
                     <div class="panel-body">
                         Список товаров в нашем магазине.
                     </div>
